@@ -18,6 +18,12 @@ jobs:
           tenant-id: "${{ secrets.AZURE_TENANT_ID }}"
           subscription-id: "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
 
-      - name: Test Access
+      - name: Read Flag
         run: |
-          az account show
+          az storage blob download \
+            --account-name iamazurelab35a817183 \
+            --container-name flag \
+            --name flag.txt \
+            --file flag.txt \
+            --auth-mode login
+          cat flag.txt
